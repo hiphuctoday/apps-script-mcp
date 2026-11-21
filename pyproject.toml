@@ -11,6 +11,10 @@ dependencies = [
     "httpx>=0.27",
 ]
 
+[project.urls]
+Repository = "https://github.com/hiphuctoday/apps-script-mcp"
+Issues = "https://github.com/hiphuctoday/apps-script-mcp/issues"
+
 [project.scripts]
 apps-script-mcp = "apps_script_mcp.server:main"
 

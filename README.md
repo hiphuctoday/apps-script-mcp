@@ -1,12 +1,14 @@
 # apps-script-mcp
 
+[![PyPI](https://img.shields.io/pypi/v/apps-script-mcp)](https://pypi.org/project/apps-script-mcp/)
+
 An MCP server that lets Claude write and run Google Apps Script in your Google account, with no Google Cloud Console setup.
 
 It works through a small "bridge" script that you deploy once as a web app in your own account. The local server calls it with a secret key, and the bridge runs as you.
 
 ## Setup
 
-Requires [uv](https://docs.astral.sh/uv/).
+Requires [uv](https://docs.astral.sh/uv/). The server is published on [PyPI](https://pypi.org/project/apps-script-mcp/), so `uvx` downloads and runs it; you only need this repository for the two bridge files.
 
 1. Create a new project at <https://script.google.com> and paste in [bridge/Code.gs](bridge/Code.gs).
 2. Click **+** next to **Services** and add **Drive API**.
@@ -19,8 +21,8 @@ Requires [uv](https://docs.astral.sh/uv/).
 {
   "mcpServers": {
     "apps-script": {
-      "command": "uv",
-      "args": ["run", "--directory", "/path/to/apps-script-mcp", "apps-script-mcp"],
+      "command": "uvx",
+      "args": ["apps-script-mcp"],
       "env": {
         "APPS_SCRIPT_BRIDGE_URL": "https://script.google.com/macros/s/.../exec",
         "APPS_SCRIPT_BRIDGE_KEY": "your key"
