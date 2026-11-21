@@ -7,7 +7,7 @@
  * The local MCP server calls the web app URL with the key that setup() prints.
  */
 
-const BRIDGE_VERSION = '1.1.2';
+const BRIDGE_VERSION = '1.1.3';
 const SCRIPT_MIME = 'application/vnd.google-apps.script';
 const SCRIPT_JSON_MIME = 'application/vnd.google-apps.script+json';
 const KEY_PROPERTY = 'BRIDGE_KEY';
@@ -23,7 +23,8 @@ function setup() {
   const props = PropertiesService.getScriptProperties();
   let key = props.getProperty(KEY_PROPERTY);
   if (!key) {
-    key = (Utilities.getUuid() + Utilities.getUuid()).replace(/-/g, '');
+    // 4 random UUIDs: 128 hex chars, ~488 bits of randomness.
+    key = [1, 2, 3, 4].map(function () { return Utilities.getUuid(); }).join('').replace(/-/g, '');
     props.setProperty(KEY_PROPERTY, key);
   }
   console.log('APPS_SCRIPT_BRIDGE_KEY (keep it secret): ' + key);
